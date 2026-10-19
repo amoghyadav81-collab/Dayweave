@@ -1,0 +1,70 @@
+{
+  "startedAt": "2026-10-19T06:08:39.793Z",
+  "steps": [
+    {
+      "name": "TypeScript",
+      "status": "passed",
+      "startedAt": "2026-10-19T06:08:39.794Z",
+      "finishedAt": "2026-10-19T06:08:43.552Z",
+      "exitCode": 0
+    },
+    {
+      "name": "Unit, security and recovery tests",
+      "status": "passed",
+      "startedAt": "2026-10-19T06:08:43.552Z",
+      "finishedAt": "2026-10-19T06:08:46.224Z",
+      "exitCode": 0
+    },
+    {
+      "name": "Production build",
+      "status": "passed",
+      "startedAt": "2026-10-19T06:08:46.225Z",
+      "finishedAt": "2026-10-19T06:08:51.859Z",
+      "exitCode": 0
+    },
+    {
+      "name": "Desktop/mobile and authenticated MCP browser checks",
+      "status": "passed",
+      "startedAt": "2026-10-19T06:08:51.859Z",
+      "finishedAt": "2026-10-19T06:09:10.369Z",
+      "exitCode": 0
+    },
+    {
+      "name": "Locked production bundle",
+      "status": "passed",
+      "startedAt": "2026-10-19T06:09:10.370Z",
+      "finishedAt": "2026-10-19T06:09:28.676Z",
+      "exitCode": 0
+    },
+    {
+      "name": "Production image build",
+      "status": "passed",
+      "startedAt": "2026-10-19T06:09:28.677Z",
+      "finishedAt": "2026-10-19T06:09:49.916Z",
+      "exitCode": 0
+    },
+    {
+      "name": "Container browser checks and persistent-volume replacement",
+      "status": "passed",
+      "startedAt": "2026-10-19T06:09:49.916Z",
+      "finishedAt": "2026-10-19T06:10:47.236Z",
+      "exitCode": 0
+    }
+  ],
+  "unverified": [
+    "Public hosting/TLS and provider recovery",
+    "Two real ChatGPT account connections",
+    "Unattended ChatGPT scheduling",
+    "Physical phone delivery and unrelated-user seven-day trial"
+  ],
+  "status": "passed",
+  "finishedAt": "2026-10-19T06:10:47.236Z",
+  "observedTestCounts": {
+    "unitSecurityRecoveryPassed": 52,
+    "productionBrowserPassed": 12,
+    "containerBrowserPassed": 12,
+    "failed": 0,
+    "skipped": 0
+  },
+  "containerImage": "sha256:a418c529ef0a824475e642bd85dc6c11c4034cfdb4bfd8376c760ad2e406b0af"
+}

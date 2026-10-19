@@ -1,0 +1,29 @@
+# Render Blueprint: one modest Node service with persistent SQLite storage.
+# This creates a PAID service/disk; review current pricing before approving in Render.
+services:
+  - type: web
+    name: dayweave
+    runtime: node
+    plan: starter
+    numInstances: 1
+    buildCommand: npm ci --include=dev && npm run build
+    startCommand: npm run start:host
+    healthCheckPath: /api/health
+    autoDeployTrigger: "off"
+    disk:
+      name: dayweave-data
+      mountPath: /var/data
+      sizeGB: 1
+    envVars:
+      - key: NODE_VERSION
+        value: 24.19.0
+      - key: NODE_ENV
+        value: production
+      - key: NEXT_TELEMETRY_DISABLED
+        value: "1"
+      - key: DATABASE_PATH
+        value: /var/data/dayweave.sqlite
+      - key: SIGNUP_INVITE_CODE
+        generateValue: true
+      - key: OAUTH_REDIRECT_URIS
+        value: '["https://chatgpt.com/connector_platform/oauth_redirect"]'

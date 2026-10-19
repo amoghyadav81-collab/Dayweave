@@ -1,0 +1,12 @@
+{$DAYWEAVE_DOMAIN} {
+    encode zstd gzip
+    request_body {
+        max_size 10MB
+    }
+    header {
+        Strict-Transport-Security "max-age=31536000"
+        -Server
+    }
+    # Access logging is deliberately disabled: no auth queries, tokens or planner content.
+    reverse_proxy dayweave:3000
+}

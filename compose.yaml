@@ -1,0 +1,14 @@
+services:
+  dayweave:
+    build: .
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:3000:3000"
+    environment:
+      APP_URL: ${APP_URL:?Set the public HTTPS origin}
+      SIGNUP_INVITE_CODE: ${SIGNUP_INVITE_CODE:?Set a private random invitation code}
+      OAUTH_REDIRECT_URIS: ${OAUTH_REDIRECT_URIS:-["https://chatgpt.com/connector_platform/oauth_redirect"]}
+    volumes:
+      - planner:/data
+volumes:
+  planner:

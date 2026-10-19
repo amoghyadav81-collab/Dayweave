@@ -1,0 +1,10 @@
+{
+  "name": "Dayweave testing",
+  "image": "node:24-bookworm",
+  "forwardPorts": [3000],
+  "portsAttributes": {
+    "3000": { "label": "Dayweave test app", "onAutoForward": "notify", "protocol": "http" }
+  },
+  "postCreateCommand": "npm ci --include=dev && node scripts/setup-codespace.mjs",
+  "postStartCommand": "node scripts/setup-codespace.mjs"
+}

@@ -1,0 +1,42 @@
+services:
+  dayweave:
+    image: dayweave:release
+    restart: unless-stopped
+    environment:
+      APP_URL: https://${DAYWEAVE_DOMAIN:?Set DAYWEAVE_DOMAIN}
+      SIGNUP_INVITE_CODE: ${SIGNUP_INVITE_CODE:?Set a private invitation code}
+      OAUTH_REDIRECT_URIS: ${OAUTH_REDIRECT_URIS:-["https://chatgpt.com/connector_platform/oauth_redirect"]}
+    volumes:
+      - planner:/data
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3000/api/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "3"
+  https:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    depends_on:
+      dayweave:
+        condition: service_healthy
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      DAYWEAVE_DOMAIN: ${DAYWEAVE_DOMAIN:?Set DAYWEAVE_DOMAIN}
+    volumes:
+      - ./deploy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - certificates:/data
+      - caddy_config:/config
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "3"
+volumes:
+  planner:
+  certificates:
+  caddy_config:
